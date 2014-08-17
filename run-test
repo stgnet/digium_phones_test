@@ -13,9 +13,9 @@ sudo /usr/local/sbin/amportal a r
 
 # check generated configuration
 
-for FILE in configs/*
-do
-	CONFIG="${FILE#*/}"
-	diff configs/$CONFIG /etc/asterisk/$CONFIG || exit 1
-done
-echo "All files match - TEST PASSED"
+#for FILE in configs/*
+#do
+#	CONFIG="${FILE#*/}"
+#	diff configs/$CONFIG /etc/asterisk/$CONFIG || exit 1
+#done
+diff -r configs/. /etc/asterisk/. | fgrep -v 'Only in'

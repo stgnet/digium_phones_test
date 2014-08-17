@@ -1,0 +1,29 @@
+<contacts 
+  group_name="internal-202"
+  editable="0"
+>
+  <contact
+    first_name="Test User"
+    last_name=""
+    organization=""
+    contact_type="sip"
+    account_id="200"
+    subscribe_to="auto_hint_200"
+  >
+    <numbers>
+      <number dial="200" label="Extension" primary="1" />
+    </numbers>
+  </contact>
+  <contact
+    first_name="Test One"
+    last_name=""
+    organization=""
+    contact_type="sip"
+    account_id="201"
+    subscribe_to="auto_hint_201"
+  >
+    <numbers>
+      <number dial="201" label="Extension" primary="1" />
+    </numbers>
+  </contact>
+</contacts>

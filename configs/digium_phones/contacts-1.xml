@@ -1,0 +1,15 @@
+<contacts 
+  group_name="TestBook"
+  editable="0"
+>
+  <contact
+    first_name="CNID"
+    last_name=""
+    organization=""
+    contact_type="sip|external"
+  >
+    <numbers>
+      <number dial="18004444444" label="Extension" primary="1" />
+    </numbers>
+  </contact>
+</contacts>
