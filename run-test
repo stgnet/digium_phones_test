@@ -1,0 +1,21 @@
+#!/bin/bash
+set -ex
+
+# install mysql tables
+sudo mysql -u root asterisk < tables-needed.mysql
+
+# install files
+sudo tar xvfz files-needed.tgz -C /
+
+# ask FreePBX to rebuild configuration
+
+sudo /usr/local/sbin/amportal a r
+
+# check generated configuration
+
+for FILE in configs/*
+do
+	CONFIG="${FILE#*/}"
+	diff configs/$CONFIG /etc/asterisk/$CONFIG || exit 1
+done
+echo "All files match - TEST PASSED"

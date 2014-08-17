@@ -1,0 +1,942 @@
+-- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (i386)
+--
+-- Host: localhost    Database: asterisk
+-- ------------------------------------------------------
+-- Server version	5.1.73-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `devices`
+--
+
+DROP TABLE IF EXISTS `devices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `devices` (
+  `id` varchar(20) NOT NULL DEFAULT '',
+  `tech` varchar(10) NOT NULL DEFAULT '',
+  `dial` varchar(50) NOT NULL DEFAULT '',
+  `devicetype` varchar(5) NOT NULL DEFAULT '',
+  `user` varchar(50) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  `emergency_cid` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `devices`
+--
+
+LOCK TABLES `devices` WRITE;
+/*!40000 ALTER TABLE `devices` DISABLE KEYS */;
+INSERT INTO `devices` VALUES ('200','sip','SIP/200','fixed','200','Test User',''),('201','sip','SIP/201','fixed','201','Test One',''),('202','sip','SIP/202','fixed','202','Test Two','');
+/*!40000 ALTER TABLE `devices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_alerts`
+--
+
+DROP TABLE IF EXISTS `digium_phones_alerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_alerts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `alertinfo` varchar(30) DEFAULT NULL,
+  `type` varchar(30) DEFAULT NULL,
+  `ringtone` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_alerts`
+--
+
+LOCK TABLES `digium_phones_alerts` WRITE;
+/*!40000 ALTER TABLE `digium_phones_alerts` DISABLE KEYS */;
+INSERT INTO `digium_phones_alerts` VALUES (1,'Vintage','Vintage','normal',1);
+/*!40000 ALTER TABLE `digium_phones_alerts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_customapp_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_customapp_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_customapp_settings` (
+  `customappid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`customappid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_customapp_settings`
+--
+
+LOCK TABLES `digium_phones_customapp_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_customapp_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_customapp_settings` VALUES (1,'autostart','yes');
+/*!40000 ALTER TABLE `digium_phones_customapp_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_customapps`
+--
+
+DROP TABLE IF EXISTS `digium_phones_customapps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_customapps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_customapps`
+--
+
+LOCK TABLES `digium_phones_customapps` WRITE;
+/*!40000 ALTER TABLE `digium_phones_customapps` DISABLE KEYS */;
+INSERT INTO `digium_phones_customapps` VALUES (1,'HelloWorld');
+/*!40000 ALTER TABLE `digium_phones_customapps` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_alerts`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_alerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_alerts` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `alertid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`alertid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_alerts`
+--
+
+LOCK TABLES `digium_phones_device_alerts` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_alerts` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_alerts` VALUES (0,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_alerts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_customapps`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_customapps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_customapps` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `customappid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`customappid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_customapps`
+--
+
+LOCK TABLES `digium_phones_device_customapps` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_customapps` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_customapps` VALUES (0,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_customapps` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_externallines`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_externallines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_externallines` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `externallineid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`externallineid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_externallines`
+--
+
+LOCK TABLES `digium_phones_device_externallines` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_externallines` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_externallines` VALUES (0,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_externallines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_logos`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_logos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_logos` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `logoid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`logoid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_logos`
+--
+
+LOCK TABLES `digium_phones_device_logos` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_logos` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_logos` VALUES (0,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_logos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_networks`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_networks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_networks` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `networkid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`networkid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_networks`
+--
+
+LOCK TABLES `digium_phones_device_networks` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_networks` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_networks` VALUES (0,200,-1);
+/*!40000 ALTER TABLE `digium_phones_device_networks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_phonebooks`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_phonebooks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_phonebooks` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `phonebookid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`phonebookid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_phonebooks`
+--
+
+LOCK TABLES `digium_phones_device_phonebooks` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_phonebooks` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_phonebooks` VALUES (0,202,-1),(0,201,-1),(0,200,-1),(1,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_phonebooks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_settings` (
+  `deviceid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`deviceid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_settings`
+--
+
+LOCK TABLES `digium_phones_device_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_settings` VALUES (202,'send_to_vm','yes'),(202,'record_own_calls','yes'),(202,'rapiddial','-1'),(201,'send_to_vm','yes'),(201,'record_own_calls','yes'),(201,'rapiddial','-1'),(200,'rapiddial','-1'),(200,'name_format','first_last'),(200,'timezone','America/Chicago'),(200,'web_ui_enabled','yes'),(200,'record_own_calls','yes'),(200,'blf_unused_linekeys','yes'),(200,'active_ringtone','-13'),(200,'send_to_vm','yes'),(200,'accept_local_calls','host'),(200,'lock_preferences','no'),(200,'display_mc_notification','no'),(200,'brightness','2'),(200,'contrast','3'),(200,'backlight_dim_level','3'),(200,'dim_backlight','yes'),(200,'backlight_timeout','42'),(200,'ringer_volume','1'),(200,'speaker_volume','2'),(200,'handset_volume','3'),(200,'headset_volume','4'),(200,'reset_call_volume','yes'),(200,'headset_answer','yes'),(200,'firmware_package_id','package_53efe869c1b0b4.85691735'),(200,'active_locale','en_US');
+/*!40000 ALTER TABLE `digium_phones_device_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_device_statuses`
+--
+
+DROP TABLE IF EXISTS `digium_phones_device_statuses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_device_statuses` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `statusid` int(11) NOT NULL,
+  PRIMARY KEY (`deviceid`,`statusid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_device_statuses`
+--
+
+LOCK TABLES `digium_phones_device_statuses` WRITE;
+/*!40000 ALTER TABLE `digium_phones_device_statuses` DISABLE KEYS */;
+INSERT INTO `digium_phones_device_statuses` VALUES (0,200,1);
+/*!40000 ALTER TABLE `digium_phones_device_statuses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_devices`
+--
+
+DROP TABLE IF EXISTS `digium_phones_devices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_devices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=203 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_devices`
+--
+
+LOCK TABLES `digium_phones_devices` WRITE;
+/*!40000 ALTER TABLE `digium_phones_devices` DISABLE KEYS */;
+INSERT INTO `digium_phones_devices` VALUES (201,'Test One'),(200,'Test User'),(202,'Test Two');
+/*!40000 ALTER TABLE `digium_phones_devices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_externalline_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_externalline_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_externalline_settings` (
+  `externallineid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`externallineid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_externalline_settings`
+--
+
+LOCK TABLES `digium_phones_externalline_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_externalline_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_externalline_settings` VALUES (1,'userid','1234'),(1,'authname','1234'),(1,'secret','4321'),(1,'server_address','123.123.123.123'),(1,'server_port','5060'),(1,'server_transport','udp'),(1,'callerid','Test External'),(1,'register','no'),(1,'secondary_server_port','5060'),(1,'secondary_server_transport','udp');
+/*!40000 ALTER TABLE `digium_phones_externalline_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_externallines`
+--
+
+DROP TABLE IF EXISTS `digium_phones_externallines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_externallines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_externallines`
+--
+
+LOCK TABLES `digium_phones_externallines` WRITE;
+/*!40000 ALTER TABLE `digium_phones_externallines` DISABLE KEYS */;
+INSERT INTO `digium_phones_externallines` VALUES (1,'TestExtLine1');
+/*!40000 ALTER TABLE `digium_phones_externallines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_firmware`
+--
+
+DROP TABLE IF EXISTS `digium_phones_firmware`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_firmware` (
+  `unique_id` varchar(50) NOT NULL,
+  `file_name` varchar(50) NOT NULL,
+  `phone_model` varchar(30) NOT NULL,
+  `package_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`unique_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_firmware`
+--
+
+LOCK TABLES `digium_phones_firmware` WRITE;
+/*!40000 ALTER TABLE `digium_phones_firmware` DISABLE KEYS */;
+INSERT INTO `digium_phones_firmware` VALUES ('firmware_53efe869c222e1.46598821','1_4_2_0_63880_D40_firmware.eff','D40','package_53efe869c1b0b4.85691735'),('firmware_53efe869cd1f25.24930450','1_4_2_0_63880_D45_firmware.eff','D45','package_53efe869c1b0b4.85691735'),('firmware_53efe869cd8fe4.59111205','1_4_2_0_63880_D50_firmware.eff','D50','package_53efe869c1b0b4.85691735'),('firmware_53efe869cdda39.49531761','1_4_2_0_63880_D70_firmware.eff','D70','package_53efe869c1b0b4.85691735');
+/*!40000 ALTER TABLE `digium_phones_firmware` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_firmware_packages`
+--
+
+DROP TABLE IF EXISTS `digium_phones_firmware_packages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_firmware_packages` (
+  `unique_id` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `file_path` varchar(512) NOT NULL,
+  `version` varchar(30) NOT NULL,
+  PRIMARY KEY (`unique_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_firmware_packages`
+--
+
+LOCK TABLES `digium_phones_firmware_packages` WRITE;
+/*!40000 ALTER TABLE `digium_phones_firmware_packages` DISABLE KEYS */;
+INSERT INTO `digium_phones_firmware_packages` VALUES ('package_53efe869c1b0b4.85691735','firmware_1_4_2_0_package','/var/www/html/digium_phones/firmware_1_4_2_0_package','1_4_2_0_63880');
+/*!40000 ALTER TABLE `digium_phones_firmware_packages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_general`
+--
+
+DROP TABLE IF EXISTS `digium_phones_general`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_general` (
+  `keyword` varchar(50) NOT NULL,
+  `val` varchar(255) DEFAULT NULL,
+  `default_val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_general`
+--
+
+LOCK TABLES `digium_phones_general` WRITE;
+/*!40000 ALTER TABLE `digium_phones_general` DISABLE KEYS */;
+INSERT INTO `digium_phones_general` VALUES ('globalpin','',''),('userlist_auth','disabled','disabled'),('config_auth','disabled','disabled'),('mdns_address','192.168.1.68',''),('mdns_port','5060','5060'),('service_name','Asterisk','Asterisk'),('easy_mode','no','yes'),('firmware_version','',''),('internal_phonebook_sort','extension','extension'),('active_locale','en_US','en_US');
+/*!40000 ALTER TABLE `digium_phones_general` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_lines`
+--
+
+DROP TABLE IF EXISTS `digium_phones_lines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_lines` (
+  `id` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `extension` varchar(45) NOT NULL DEFAULT '',
+  PRIMARY KEY (`deviceid`,`extension`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_lines`
+--
+
+LOCK TABLES `digium_phones_lines` WRITE;
+/*!40000 ALTER TABLE `digium_phones_lines` DISABLE KEYS */;
+INSERT INTO `digium_phones_lines` VALUES (0,202,'202'),(0,201,'201'),(0,200,'200');
+/*!40000 ALTER TABLE `digium_phones_lines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_logos`
+--
+
+DROP TABLE IF EXISTS `digium_phones_logos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_logos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `model` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_logos`
+--
+
+LOCK TABLES `digium_phones_logos` WRITE;
+/*!40000 ALTER TABLE `digium_phones_logos` DISABLE KEYS */;
+INSERT INTO `digium_phones_logos` VALUES (1,'acme40','d40');
+/*!40000 ALTER TABLE `digium_phones_logos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_network_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_network_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_network_settings` (
+  `networkid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`networkid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_network_settings`
+--
+
+LOCK TABLES `digium_phones_network_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_network_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_network_settings` VALUES (-1,'cidr','0.0.0.0/0'),(-1,'ntp_server','0.digium.pool.ntp.org'),(-1,'registration_address',''),(-1,'registration_port',''),(-1,'file_url_prefix',''),(1,'registration_port','5060'),(1,'registration_address','123.123.123.123'),(1,'ntp_server','0.digium.pool.ntp.org'),(1,'cidr','123.123.123.0/24'),(1,'file_url_prefix','http://totally.bogus/'),(1,'syslog_server','192.168.1.68'),(1,'syslog_port','514'),(1,'network_vlan_discovery_mode','LLDP'),(1,'sip_dscp','24'),(1,'rtp_dscp','46');
+/*!40000 ALTER TABLE `digium_phones_network_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_networks`
+--
+
+DROP TABLE IF EXISTS `digium_phones_networks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_networks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_networks`
+--
+
+LOCK TABLES `digium_phones_networks` WRITE;
+/*!40000 ALTER TABLE `digium_phones_networks` DISABLE KEYS */;
+INSERT INTO `digium_phones_networks` VALUES (-1,'Default Network'),(1,'Second Test Network');
+/*!40000 ALTER TABLE `digium_phones_networks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_phonebook_entries`
+--
+
+DROP TABLE IF EXISTS `digium_phones_phonebook_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_phonebook_entries` (
+  `id` int(11) NOT NULL,
+  `phonebookid` int(11) NOT NULL,
+  `extension` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`,`phonebookid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_phonebook_entries`
+--
+
+LOCK TABLES `digium_phones_phonebook_entries` WRITE;
+/*!40000 ALTER TABLE `digium_phones_phonebook_entries` DISABLE KEYS */;
+INSERT INTO `digium_phones_phonebook_entries` VALUES (0,1,'18004444444');
+/*!40000 ALTER TABLE `digium_phones_phonebook_entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_phonebook_entry_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_phonebook_entry_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_phonebook_entry_settings` (
+  `phonebookid` int(11) NOT NULL,
+  `phonebookentryid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`phonebookid`,`phonebookentryid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_phonebook_entry_settings`
+--
+
+LOCK TABLES `digium_phones_phonebook_entry_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_phonebook_entry_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_phonebook_entry_settings` VALUES (1,0,'type','external'),(1,0,'label','CNID');
+/*!40000 ALTER TABLE `digium_phones_phonebook_entry_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_phonebooks`
+--
+
+DROP TABLE IF EXISTS `digium_phones_phonebooks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_phonebooks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_phonebooks`
+--
+
+LOCK TABLES `digium_phones_phonebooks` WRITE;
+/*!40000 ALTER TABLE `digium_phones_phonebooks` DISABLE KEYS */;
+INSERT INTO `digium_phones_phonebooks` VALUES (-1,'Internal Phonebook'),(1,'TestBook');
+/*!40000 ALTER TABLE `digium_phones_phonebooks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_queues`
+--
+
+DROP TABLE IF EXISTS `digium_phones_queues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_queues` (
+  `queueid` int(11) NOT NULL,
+  `deviceid` int(11) NOT NULL,
+  `permission` varchar(8) NOT NULL DEFAULT '',
+  PRIMARY KEY (`queueid`,`deviceid`,`permission`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_queues`
+--
+
+LOCK TABLES `digium_phones_queues` WRITE;
+/*!40000 ALTER TABLE `digium_phones_queues` DISABLE KEYS */;
+INSERT INTO `digium_phones_queues` VALUES (601,201,'status'),(601,202,'details');
+/*!40000 ALTER TABLE `digium_phones_queues` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_ringtones`
+--
+
+DROP TABLE IF EXISTS `digium_phones_ringtones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_ringtones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `builtin` tinyint(1) DEFAULT '0',
+  `filename` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_ringtones`
+--
+
+LOCK TABLES `digium_phones_ringtones` WRITE;
+/*!40000 ALTER TABLE `digium_phones_ringtones` DISABLE KEYS */;
+INSERT INTO `digium_phones_ringtones` VALUES (-1,'Alarm',1,NULL),(-2,'Chimes',1,NULL),(-3,'Digium',1,NULL),(-4,'GuitarStrum',1,NULL),(-5,'Jingle',1,NULL),(-6,'Office',1,NULL),(-7,'Office2',1,NULL),(-8,'RotaryPhone',1,NULL),(-9,'SteelDrum',1,NULL),(-10,'Techno',1,NULL),(-11,'Theme',1,NULL),(-12,'Tweedle',1,NULL),(-13,'Twinkle',1,NULL),(-14,'Vibe',1,NULL),(1,'Vintage',0,'vintage.raw');
+/*!40000 ALTER TABLE `digium_phones_ringtones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_status_entries`
+--
+
+DROP TABLE IF EXISTS `digium_phones_status_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_status_entries` (
+  `id` int(11) NOT NULL,
+  `statusid` int(11) NOT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`statusid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_status_entries`
+--
+
+LOCK TABLES `digium_phones_status_entries` WRITE;
+/*!40000 ALTER TABLE `digium_phones_status_entries` DISABLE KEYS */;
+INSERT INTO `digium_phones_status_entries` VALUES (0,1,'Lunch');
+/*!40000 ALTER TABLE `digium_phones_status_entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_status_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_status_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_status_settings` (
+  `statusid` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`statusid`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_status_settings`
+--
+
+LOCK TABLES `digium_phones_status_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_status_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_status_settings` VALUES (1,'status','away'),(1,'send486','no');
+/*!40000 ALTER TABLE `digium_phones_status_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_statuses`
+--
+
+DROP TABLE IF EXISTS `digium_phones_statuses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_statuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_statuses`
+--
+
+LOCK TABLES `digium_phones_statuses` WRITE;
+/*!40000 ALTER TABLE `digium_phones_statuses` DISABLE KEYS */;
+INSERT INTO `digium_phones_statuses` VALUES (1,'Test');
+/*!40000 ALTER TABLE `digium_phones_statuses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `extensions`
+--
+
+DROP TABLE IF EXISTS `extensions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `extensions` (
+  `context` varchar(45) NOT NULL DEFAULT 'default',
+  `extension` varchar(45) NOT NULL DEFAULT '',
+  `priority` varchar(5) NOT NULL DEFAULT '1',
+  `application` varchar(45) NOT NULL DEFAULT '',
+  `args` varchar(255) DEFAULT NULL,
+  `descr` text,
+  `flags` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`context`,`extension`,`priority`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `extensions`
+--
+
+LOCK TABLES `extensions` WRITE;
+/*!40000 ALTER TABLE `extensions` DISABLE KEYS */;
+INSERT INTO `extensions` VALUES ('outrt-001-9_outside','_9.','1','Macro','dialout-trunk,1,${EXTEN:1}',NULL,0),('outrt-001-9_outside','_9.','2','Macro','outisbusy','No available circuits',0),('outbound-allroutes','include','1','outrt-001-9_outside','','',2);
+/*!40000 ALTER TABLE `extensions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `queues_config`
+--
+
+DROP TABLE IF EXISTS `queues_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `queues_config` (
+  `extension` varchar(20) NOT NULL DEFAULT '',
+  `descr` varchar(35) NOT NULL DEFAULT '',
+  `grppre` varchar(100) NOT NULL DEFAULT '',
+  `alertinfo` varchar(254) NOT NULL DEFAULT '',
+  `ringing` tinyint(1) NOT NULL DEFAULT '0',
+  `maxwait` varchar(8) NOT NULL DEFAULT '',
+  `password` varchar(20) NOT NULL DEFAULT '',
+  `ivr_id` varchar(8) NOT NULL DEFAULT '0',
+  `dest` varchar(50) NOT NULL DEFAULT '',
+  `cwignore` tinyint(1) NOT NULL DEFAULT '0',
+  `queuewait` tinyint(1) DEFAULT '0',
+  `use_queue_context` tinyint(1) DEFAULT '0',
+  `togglehint` tinyint(1) DEFAULT '0',
+  `qnoanswer` tinyint(1) DEFAULT '0',
+  `callconfirm` tinyint(1) DEFAULT '0',
+  `callconfirm_id` int(11) DEFAULT NULL,
+  `qregex` varchar(255) DEFAULT NULL,
+  `agentannounce_id` int(11) DEFAULT NULL,
+  `joinannounce_id` int(11) DEFAULT NULL,
+  `monitor_type` varchar(5) DEFAULT NULL,
+  `monitor_heard` int(11) DEFAULT NULL,
+  `monitor_spoken` int(11) DEFAULT NULL,
+  PRIMARY KEY (`extension`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `queues_config`
+--
+
+LOCK TABLES `queues_config` WRITE;
+/*!40000 ALTER TABLE `queues_config` DISABLE KEYS */;
+INSERT INTO `queues_config` VALUES ('601','Test Queue','','',0,'','','none','',0,0,0,0,0,0,0,'',0,0,'',0,0);
+/*!40000 ALTER TABLE `queues_config` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `queues_details`
+--
+
+DROP TABLE IF EXISTS `queues_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `queues_details` (
+  `id` varchar(45) NOT NULL DEFAULT '-1',
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `data` varchar(150) NOT NULL DEFAULT '',
+  `flags` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`,`keyword`,`data`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `queues_details`
+--
+
+LOCK TABLES `queues_details` WRITE;
+/*!40000 ALTER TABLE `queues_details` DISABLE KEYS */;
+INSERT INTO `queues_details` VALUES ('601','memberdelay','0',0),('601','servicelevel','60',0),('601','autopausedelay','0',0),('601','autopause','no',0),('601','reportholdtime','no',0),('601','ringinuse','yes',0),('601','autofill','no',0),('601','weight','0',0),('601','eventmemberstatus','yes',0),('601','eventwhencalled','yes',0),('601','monitor-join','yes',0),('601','monitor-format','',0),('601','periodic-announce-frequency','0',0),('601','queue-thankyou','',0),('601','queue-callswaiting','silence/1',0),('601','queue-thereare','silence/1',0),('601','queue-youarenext','silence/1',0),('601','announce-position','no',0),('601','announce-holdtime','no',0),('601','announce-frequency','0',0),('601','wrapuptime','0',0),('601','retry','5',0),('601','timeout','15',0),('601','strategy','ringall',0),('601','leavewhenempty','no',0),('601','joinempty','yes',0),('601','maxlen','0',0),('601','timeoutrestart','no',0),('601','skip_joinannounce','',0),('601','cron_schedule','never',0),('601','autopausebusy','no',0),('601','autopauseunavail','no',0),('601','timeoutpriority','app',0),('601','penaltymemberslimit','0',0),('601','answered_elsewhere','0',0),('601','member','Local/201@from-queue/n,0',0),('601','member','Local/202@from-queue/n,0',1),('601','setinterfacevar','yes',0);
+/*!40000 ALTER TABLE `queues_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sip`
+--
+
+DROP TABLE IF EXISTS `sip`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sip` (
+  `id` varchar(20) NOT NULL DEFAULT '-1',
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `data` varchar(255) NOT NULL,
+  `flags` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sip`
+--
+
+LOCK TABLES `sip` WRITE;
+/*!40000 ALTER TABLE `sip` DISABLE KEYS */;
+INSERT INTO `sip` VALUES ('200','allow','',21),('200','disallow','',20),('200','pickupgroup','',19),('200','callgroup','',18),('200','encryption','no',17),('200','icesupport','no',16),('200','avpf','no',15),('200','transport','udp',14),('200','qualifyfreq','60',13),('200','qualify','yes',12),('200','port','5060',11),('200','nat','yes',10),('200','type','friend',9),('200','sendrpid','pai',8),('200','trustrpid','yes',7),('200','host','dynamic',6),('200','context','from-internal',5),('200','canreinvite','no',4),('200','dtmfmode','rfc2833',3),('200','secret','d7d25e8bf5d0d22f0b9804bf8fc999d8',2),('201','secret','7d3ce71d5c38e35ab86c37638386be57',2),('201','dtmfmode','rfc2833',3),('201','canreinvite','no',4),('201','context','from-internal',5),('201','host','dynamic',6),('201','trustrpid','yes',7),('201','sendrpid','pai',8),('201','type','friend',9),('201','nat','yes',10),('201','port','5060',11),('201','qualify','yes',12),('201','qualifyfreq','60',13),('201','transport','udp',14),('201','avpf','no',15),('201','icesupport','no',16),('201','encryption','no',17),('201','callgroup','',18),('201','pickupgroup','',19),('201','disallow','',20),('201','allow','',21),('201','dial','SIP/201',22),('201','accountcode','',23),('201','mailbox','201@device',24),('201','deny','0.0.0.0/0.0.0.0',25),('201','permit','0.0.0.0/0.0.0.0',26),('201','account','201',27),('201','callerid','device <201>',28),('202','secret','eb984dd513a5a12e2780dacf92b6f4d1',2),('202','dtmfmode','rfc2833',3),('202','canreinvite','no',4),('202','context','from-internal',5),('202','host','dynamic',6),('202','trustrpid','yes',7),('202','sendrpid','pai',8),('202','type','friend',9),('202','nat','yes',10),('202','port','5060',11),('202','qualify','yes',12),('202','qualifyfreq','60',13),('202','transport','udp',14),('202','avpf','no',15),('202','icesupport','no',16),('202','encryption','no',17),('202','callgroup','',18),('202','pickupgroup','',19),('202','disallow','',20),('202','allow','',21),('202','dial','SIP/202',22),('202','accountcode','',23),('202','mailbox','202@device',24),('202','deny','0.0.0.0/0.0.0.0',25),('202','permit','0.0.0.0/0.0.0.0',26),('202','account','202',27),('202','callerid','device <202>',28),('200','dial','SIP/200',22),('200','accountcode','',23),('200','mailbox','200@device',24),('200','deny','0.0.0.0/0.0.0.0',25),('200','permit','0.0.0.0/0.0.0.0',26),('200','account','200',27),('200','callerid','device <200>',28);
+/*!40000 ALTER TABLE `sip` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `extension` varchar(20) NOT NULL DEFAULT '',
+  `password` varchar(20) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `voicemail` varchar(50) DEFAULT NULL,
+  `ringtimer` int(3) DEFAULT NULL,
+  `noanswer` varchar(100) DEFAULT NULL,
+  `recording` varchar(50) DEFAULT NULL,
+  `outboundcid` varchar(50) DEFAULT NULL,
+  `sipname` varchar(50) DEFAULT NULL,
+  `noanswer_cid` varchar(20) NOT NULL DEFAULT '',
+  `busy_cid` varchar(20) NOT NULL DEFAULT '',
+  `chanunavail_cid` varchar(20) NOT NULL DEFAULT '',
+  `noanswer_dest` varchar(255) NOT NULL DEFAULT '',
+  `busy_dest` varchar(255) NOT NULL DEFAULT '',
+  `chanunavail_dest` varchar(255) NOT NULL DEFAULT '',
+  `mohclass` varchar(80) DEFAULT 'default'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('200','','Test User','novm',0,'','','','','','','','','','','default'),('201','','Test One','novm',0,'','','','','','','','','','','default'),('202','','Test Two','novm',0,'','','','','','','','','','','default');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-08-16 23:00:41

@@ -1,0 +1,1 @@
+tar cvfz files-needed.tgz etc var
