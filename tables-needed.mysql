@@ -290,7 +290,7 @@ CREATE TABLE `digium_phones_device_settings` (
 
 LOCK TABLES `digium_phones_device_settings` WRITE;
 /*!40000 ALTER TABLE `digium_phones_device_settings` DISABLE KEYS */;
-INSERT INTO `digium_phones_device_settings` VALUES (202,'send_to_vm','yes'),(202,'record_own_calls','yes'),(202,'rapiddial','-1'),(201,'send_to_vm','yes'),(201,'record_own_calls','yes'),(201,'rapiddial','-1'),(200,'rapiddial','-1'),(200,'name_format','first_last'),(200,'timezone','America/Chicago'),(200,'web_ui_enabled','yes'),(200,'record_own_calls','yes'),(200,'blf_unused_linekeys','yes'),(200,'active_ringtone','-13'),(200,'send_to_vm','yes'),(200,'accept_local_calls','host'),(200,'lock_preferences','no'),(200,'display_mc_notification','no'),(200,'brightness','2'),(200,'contrast','3'),(200,'backlight_dim_level','3'),(200,'dim_backlight','yes'),(200,'backlight_timeout','42'),(200,'ringer_volume','1'),(200,'speaker_volume','2'),(200,'handset_volume','3'),(200,'headset_volume','4'),(200,'reset_call_volume','yes'),(200,'headset_answer','yes'),(200,'firmware_package_id','package_53efe869c1b0b4.85691735'),(200,'active_locale','en_US');
+INSERT INTO `digium_phones_device_settings` VALUES (202,'send_to_vm','yes'),(202,'record_own_calls','yes'),(202,'rapiddial','-1'),(201,'send_to_vm','yes'),(201,'record_own_calls','yes'),(201,'rapiddial','-1'),(200,'reset_call_volume','yes'),(200,'headset_volume','4'),(200,'handset_volume','3'),(200,'speaker_volume','2'),(200,'ringer_volume','1'),(200,'backlight_timeout','42'),(200,'dim_backlight','yes'),(200,'backlight_dim_level','3'),(200,'contrast','3'),(200,'brightness','2'),(200,'display_mc_notification','no'),(200,'lock_preferences','no'),(200,'accept_local_calls','host'),(200,'send_to_vm','yes'),(200,'active_ringtone','-13'),(200,'blf_unused_linekeys','yes'),(200,'record_own_calls','yes'),(200,'web_ui_enabled','yes'),(200,'timezone','America/Chicago'),(200,'name_format','first_last'),(200,'rapiddial','-1'),(200,'headset_answer','yes'),(200,'firmware_package_id','package_53efe869c1b0b4.85691735'),(200,'active_locale','en_US');
 /*!40000 ALTER TABLE `digium_phones_device_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,6 +341,31 @@ LOCK TABLES `digium_phones_devices` WRITE;
 /*!40000 ALTER TABLE `digium_phones_devices` DISABLE KEYS */;
 INSERT INTO `digium_phones_devices` VALUES (201,'Test One'),(200,'Test User'),(202,'Test Two');
 /*!40000 ALTER TABLE `digium_phones_devices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `digium_phones_extension_settings`
+--
+
+DROP TABLE IF EXISTS `digium_phones_extension_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `digium_phones_extension_settings` (
+  `extension` int(11) NOT NULL,
+  `keyword` varchar(30) NOT NULL DEFAULT '',
+  `val` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`extension`,`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `digium_phones_extension_settings`
+--
+
+LOCK TABLES `digium_phones_extension_settings` WRITE;
+/*!40000 ALTER TABLE `digium_phones_extension_settings` DISABLE KEYS */;
+INSERT INTO `digium_phones_extension_settings` VALUES (200,'first_name','dp firstname'),(200,'prefix','dp prefix'),(200,'second_name','dp middlename'),(200,'last_name','dp lastname'),(200,'suffix','dp suffix'),(200,'organization','dp organization'),(200,'job_title','dp title'),(200,'location','dp location'),(200,'email','dp email'),(200,'notes','dp notes');
+/*!40000 ALTER TABLE `digium_phones_extension_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -889,7 +914,7 @@ CREATE TABLE `sip` (
 
 LOCK TABLES `sip` WRITE;
 /*!40000 ALTER TABLE `sip` DISABLE KEYS */;
-INSERT INTO `sip` VALUES ('200','allow','',21),('200','disallow','',20),('200','pickupgroup','',19),('200','callgroup','',18),('200','encryption','no',17),('200','icesupport','no',16),('200','avpf','no',15),('200','transport','udp',14),('200','qualifyfreq','60',13),('200','qualify','yes',12),('200','port','5060',11),('200','nat','yes',10),('200','type','friend',9),('200','sendrpid','pai',8),('200','trustrpid','yes',7),('200','host','dynamic',6),('200','context','from-internal',5),('200','canreinvite','no',4),('200','dtmfmode','rfc2833',3),('200','secret','d7d25e8bf5d0d22f0b9804bf8fc999d8',2),('201','secret','7d3ce71d5c38e35ab86c37638386be57',2),('201','dtmfmode','rfc2833',3),('201','canreinvite','no',4),('201','context','from-internal',5),('201','host','dynamic',6),('201','trustrpid','yes',7),('201','sendrpid','pai',8),('201','type','friend',9),('201','nat','yes',10),('201','port','5060',11),('201','qualify','yes',12),('201','qualifyfreq','60',13),('201','transport','udp',14),('201','avpf','no',15),('201','icesupport','no',16),('201','encryption','no',17),('201','callgroup','',18),('201','pickupgroup','',19),('201','disallow','',20),('201','allow','',21),('201','dial','SIP/201',22),('201','accountcode','',23),('201','mailbox','201@device',24),('201','deny','0.0.0.0/0.0.0.0',25),('201','permit','0.0.0.0/0.0.0.0',26),('201','account','201',27),('201','callerid','device <201>',28),('202','secret','eb984dd513a5a12e2780dacf92b6f4d1',2),('202','dtmfmode','rfc2833',3),('202','canreinvite','no',4),('202','context','from-internal',5),('202','host','dynamic',6),('202','trustrpid','yes',7),('202','sendrpid','pai',8),('202','type','friend',9),('202','nat','yes',10),('202','port','5060',11),('202','qualify','yes',12),('202','qualifyfreq','60',13),('202','transport','udp',14),('202','avpf','no',15),('202','icesupport','no',16),('202','encryption','no',17),('202','callgroup','',18),('202','pickupgroup','',19),('202','disallow','',20),('202','allow','',21),('202','dial','SIP/202',22),('202','accountcode','',23),('202','mailbox','202@device',24),('202','deny','0.0.0.0/0.0.0.0',25),('202','permit','0.0.0.0/0.0.0.0',26),('202','account','202',27),('202','callerid','device <202>',28),('200','dial','SIP/200',22),('200','accountcode','',23),('200','mailbox','200@device',24),('200','deny','0.0.0.0/0.0.0.0',25),('200','permit','0.0.0.0/0.0.0.0',26),('200','account','200',27),('200','callerid','device <200>',28);
+INSERT INTO `sip` VALUES ('200','deny','0.0.0.0/0.0.0.0',25),('200','permit','0.0.0.0/0.0.0.0',26),('200','mailbox','200@device',24),('200','accountcode','',23),('200','dial','SIP/200',22),('200','allow','',21),('200','disallow','',20),('200','pickupgroup','',19),('200','callgroup','',18),('200','encryption','no',17),('200','icesupport','no',16),('200','avpf','no',15),('200','transport','udp',14),('201','secret','7d3ce71d5c38e35ab86c37638386be57',2),('201','dtmfmode','rfc2833',3),('201','canreinvite','no',4),('201','context','from-internal',5),('201','host','dynamic',6),('201','trustrpid','yes',7),('201','sendrpid','pai',8),('201','type','friend',9),('201','nat','yes',10),('201','port','5060',11),('201','qualify','yes',12),('201','qualifyfreq','60',13),('201','transport','udp',14),('201','avpf','no',15),('201','icesupport','no',16),('201','encryption','no',17),('201','callgroup','',18),('201','pickupgroup','',19),('201','disallow','',20),('201','allow','',21),('201','dial','SIP/201',22),('201','accountcode','',23),('201','mailbox','201@device',24),('201','deny','0.0.0.0/0.0.0.0',25),('201','permit','0.0.0.0/0.0.0.0',26),('201','account','201',27),('201','callerid','device <201>',28),('202','secret','eb984dd513a5a12e2780dacf92b6f4d1',2),('202','dtmfmode','rfc2833',3),('202','canreinvite','no',4),('202','context','from-internal',5),('202','host','dynamic',6),('202','trustrpid','yes',7),('202','sendrpid','pai',8),('202','type','friend',9),('202','nat','yes',10),('202','port','5060',11),('202','qualify','yes',12),('202','qualifyfreq','60',13),('202','transport','udp',14),('202','avpf','no',15),('202','icesupport','no',16),('202','encryption','no',17),('202','callgroup','',18),('202','pickupgroup','',19),('202','disallow','',20),('202','allow','',21),('202','dial','SIP/202',22),('202','accountcode','',23),('202','mailbox','202@device',24),('202','deny','0.0.0.0/0.0.0.0',25),('202','permit','0.0.0.0/0.0.0.0',26),('202','account','202',27),('202','callerid','device <202>',28),('200','qualifyfreq','60',13),('200','qualify','yes',12),('200','port','5060',11),('200','nat','yes',10),('200','type','friend',9),('200','sendrpid','pai',8),('200','trustrpid','yes',7),('200','host','dynamic',6),('200','context','from-internal',5),('200','canreinvite','no',4),('200','dtmfmode','rfc2833',3),('200','secret','d7d25e8bf5d0d22f0b9804bf8fc999d8',2),('200','account','200',27),('200','callerid','device <200>',28);
 /*!40000 ALTER TABLE `sip` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -939,4 +964,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-16 23:00:41
+-- Dump completed on 2014-08-17 14:24:45
