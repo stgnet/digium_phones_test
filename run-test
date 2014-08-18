@@ -6,6 +6,7 @@ sudo mysql -u root asterisk < tables-needed.mysql
 
 # install files
 sudo tar xvfz files-needed.tgz -C /
+sudo chown -R asterisk. /etc/asterisk/digium_phones /var/www/html/digium_phones
 
 # ask FreePBX to rebuild configuration
 
